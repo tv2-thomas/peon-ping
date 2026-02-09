@@ -17,24 +17,35 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background: #0a0a0f;
+  background: #000;
   color: #e0d8c8;
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* --- Ambient background --- */
-body::before {
-  content: '';
+/* --- Atmospheric background orb --- */
+.atmosphere {
   position: fixed;
   inset: 0;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(212,168,67,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(62,128,255,0.03) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(212,168,67,0.03) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
+  overflow: hidden;
+}
+.atmosphere-orb {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 900px;
+  height: 900px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(255,171,1,0.45) 0%,
+    rgba(255,171,1,0.25) 20%,
+    rgba(82,214,252,0.2) 50%,
+    transparent 75%);
+  filter: blur(100px);
 }
 
 /* --- Layout --- */
@@ -43,7 +54,7 @@ section { padding: 80px 0; }
 
 /* --- Typography --- */
 h1, h2, h3 { line-height: 1.2; }
-a { color: #d4a843; text-decoration: none; }
+a { color: #ffab01; text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 /* --- Hero --- */
@@ -51,7 +62,7 @@ a:hover { text-decoration: underline; }
 .hero-label {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.85rem;
-  color: #d4a843;
+  color: #ffab01;
   letter-spacing: 0.08em;
   text-transform: lowercase;
   margin-bottom: 16px;
@@ -71,26 +82,28 @@ a:hover { text-decoration: underline; }
   margin: 0 auto 36px;
   line-height: 1.7;
 }
-.hero-sub strong { color: #d4a843; font-weight: 500; }
+.hero-sub strong { color: #ffab01; font-weight: 500; }
 
 /* --- Install command --- */
 .install-block {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  background: #080d1a;
-  border: 1px solid #222233;
-  border-radius: 8px;
-  padding: 12px 16px;
+  border: 5px solid transparent;
+  border-image-source: url('textures/button-bg.webp');
+  border-image-slice: 16 fill;
+  border-image-repeat: stretch;
+  border-radius: 0;
+  padding: 12px 20px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.85rem;
   color: #e0e8ff;
   cursor: pointer;
-  transition: border-color 0.2s;
+  transition: filter 0.2s;
   max-width: 100%;
   overflow-x: auto;
 }
-.install-block:hover { border-color: #d4a843; }
+.install-block:hover { filter: brightness(1.2); }
 .install-block code { white-space: nowrap; }
 .copy-btn {
   background: none;
@@ -102,14 +115,14 @@ a:hover { text-decoration: underline; }
   transition: color 0.2s;
   flex-shrink: 0;
 }
-.copy-btn:hover { color: #d4a843; }
+.copy-btn:hover { color: #ffab01; }
 .copy-btn.copied { color: #4ade80; }
 
 /* --- Section headers --- */
 .section-label {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.75rem;
-  color: #d4a843;
+  color: #ffab01;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 12px;
@@ -128,6 +141,26 @@ a:hover { text-decoration: underline; }
   font-size: 0.95rem;
 }
 
+/* --- WC3 textured frames --- */
+.wc3-card {
+  border: 16px solid transparent;
+  border-image-source: url('textures/card-bg.webp');
+  border-image-slice: 24 fill;
+  border-image-repeat: stretch;
+  border-radius: 0;
+  background: transparent;
+}
+.wc3-card-lg {
+  border-width: 20px;
+}
+.wc3-button {
+  border: 5px solid transparent;
+  border-image-source: url('textures/button-bg.webp');
+  border-image-slice: 16 fill;
+  border-image-repeat: stretch;
+  border-radius: 0;
+}
+
 /* --- Problem section: 3-step pain cycle --- */
 .problem-grid {
   display: grid;
@@ -135,15 +168,17 @@ a:hover { text-decoration: underline; }
   gap: 16px;
 }
 .problem-card {
-  background: #080d1a;
-  border: 1px solid #1a1f33;
-  border-radius: 10px;
-  padding: 28px 24px;
+  border: 16px solid transparent;
+  border-image-source: url('textures/card-bg.webp');
+  border-image-slice: 24 fill;
+  border-image-repeat: stretch;
+  border-radius: 0;
+  padding: 24px 20px;
 }
 .problem-num {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #d4a843;
+  color: #ffab01;
   opacity: 0.4;
   margin-bottom: 12px;
   line-height: 1;
@@ -177,7 +212,7 @@ a:hover { text-decoration: underline; }
 }
 .fix-table th:first-child { color: #9ca8c5; }
 .fix-table th.col-without { color: #505a79; }
-.fix-table th.col-with { color: #d4a843; }
+.fix-table th.col-with { color: #ffab01; }
 .fix-table td {
   padding: 14px 16px;
   border-bottom: 1px solid #111828;
@@ -194,14 +229,16 @@ a:hover { text-decoration: underline; }
   font-style: italic;
 }
 .fix-table td.col-with {
-  color: #d4a843;
+  color: #ffab01;
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.85rem;
 }
 .fix-table-wrap {
-  background: #080d1a;
-  border: 1px solid #1a1f33;
-  border-radius: 10px;
+  border: 20px solid transparent;
+  border-image-source: url('textures/card-bg.webp');
+  border-image-slice: 24 fill;
+  border-image-repeat: stretch;
+  border-radius: 0;
   overflow: hidden;
 }
 
@@ -212,17 +249,19 @@ a:hover { text-decoration: underline; }
   gap: 12px;
 }
 .audio-card {
-  background: #080d1a;
-  border: 1px solid #1a1f33;
-  border-radius: 10px;
-  padding: 20px 16px;
+  border: 14px solid transparent;
+  border-image-source: url('textures/card-bg.webp');
+  border-image-slice: 24 fill;
+  border-image-repeat: stretch;
+  border-radius: 0;
+  padding: 16px 12px;
   text-align: center;
   cursor: pointer;
-  transition: border-color 0.2s, background 0.2s;
+  transition: filter 0.2s, box-shadow 0.2s;
   user-select: none;
 }
-.audio-card:hover { border-color: #2a3453; background: #0c1120; }
-.audio-card.playing { border-color: #d4a843; background: #0f1525; }
+.audio-card:hover { filter: brightness(1.25); }
+.audio-card.playing { filter: brightness(1.3); box-shadow: 0 0 20px rgba(255,171,1,0.35); }
 .audio-quote {
   font-size: 1rem;
   font-weight: 500;
@@ -240,30 +279,33 @@ a:hover { text-decoration: underline; }
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: rgba(212,168,67,0.1);
-  border: 1px solid rgba(212,168,67,0.2);
+  background: rgba(255,171,1,0.1);
+  border: 1px solid rgba(255,171,1,0.2);
   margin-bottom: 12px;
   line-height: 32px;
   font-size: 0.85rem;
-  color: #d4a843;
+  color: #ffab01;
   transition: background 0.2s;
 }
-.audio-card:hover .audio-play-icon { background: rgba(212,168,67,0.15); }
-.audio-card.playing .audio-play-icon { background: rgba(212,168,67,0.25); }
+.audio-card:hover .audio-play-icon { background: rgba(255,171,1,0.2); }
+.audio-card.playing .audio-play-icon { background: rgba(255,171,1,0.35); }
 
 /* --- Terminal animation --- */
 .terminal-wrap {
+  border: 20px solid transparent;
+  border-image-source: url('textures/card-bg.webp');
+  border-image-slice: 24;
+  border-image-repeat: stretch;
+  border-radius: 0;
   background: #1a1b26;
-  border-radius: 10px;
   overflow: hidden;
-  border: 1px solid #222233;
 }
 .terminal-bar {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 12px 16px;
-  background: #12131e;
+  background: #0c0d14;
   border-bottom: 1px solid #222233;
 }
 .terminal-dot {
@@ -296,7 +338,7 @@ a:hover { text-decoration: underline; }
 }
 .term-prompt { color: #4ade80; }
 .term-cmd { color: #e0e8ff; }
-.term-sound { color: #d4a843; }
+.term-sound { color: #ffab01; }
 .term-dim { color: #505a79; }
 .term-cursor {
   display: inline-block;
@@ -315,10 +357,12 @@ a:hover { text-decoration: underline; }
   gap: 12px;
 }
 .feature-card {
-  background: #080d1a;
-  border: 1px solid #1a1f33;
-  border-radius: 10px;
-  padding: 24px 16px;
+  border: 12px solid transparent;
+  border-image-source: url('textures/card-bg.webp');
+  border-image-slice: 24 fill;
+  border-image-repeat: stretch;
+  border-radius: 0;
+  padding: 20px 12px;
   text-align: center;
 }
 .feature-icon {
@@ -343,26 +387,32 @@ footer {
   text-align: center;
   font-size: 0.8rem;
   color: #505a79;
-  border-top: 1px solid #111828;
+  border-top: 1px solid rgba(255,171,1,0.1);
 }
 footer p { margin-bottom: 6px; }
 footer a { color: #7b818d; }
-footer a:hover { color: #d4a843; }
+footer a:hover { color: #ffab01; }
 
 /* --- Responsive --- */
 @media (max-width: 640px) {
   section { padding: 48px 0; }
   .hero { padding: 64px 0 40px; }
   .problem-grid { grid-template-columns: 1fr; }
+  .problem-card { border-width: 12px; }
   .fix-table { font-size: 0.8rem; }
   .fix-table td, .fix-table th { padding: 10px 12px; }
   .fix-table td:first-child { white-space: normal; }
+  .fix-table-wrap { border-width: 14px; }
   .audio-grid { grid-template-columns: repeat(2, 1fr); }
+  .audio-card { border-width: 12px; }
   .features-grid { grid-template-columns: repeat(2, 1fr); }
   .features-grid .feature-card:last-child {
     grid-column: 1 / -1;
   }
-  .install-block { font-size: 0.75rem; padding: 10px 12px; }
+  .feature-card { border-width: 10px; }
+  .terminal-wrap { border-width: 14px; }
+  .install-block { font-size: 0.75rem; padding: 10px 12px; border-width: 4px; }
+  .atmosphere-orb { width: 600px; height: 600px; }
 }
 
 /* --- Peon mascot --- */
@@ -372,11 +422,11 @@ footer a:hover { color: #d4a843; }
 .peon-avatar {
   width: 140px;
   height: 140px;
-  filter: drop-shadow(0 0 24px rgba(212,168,67,0.12));
+  filter: drop-shadow(0 0 30px rgba(255,171,1,0.25));
   transition: filter 0.3s;
 }
 .peon-avatar:hover {
-  filter: drop-shadow(0 0 36px rgba(212,168,67,0.3));
+  filter: drop-shadow(0 0 50px rgba(255,171,1,0.45));
 }
 
 /* --- Terminal sound toggle --- */
@@ -398,17 +448,72 @@ footer a:hover { color: #d4a843; }
 }
 .terminal-sound-toggle:hover { color: #9ca8c5; border-color: #555; }
 .terminal-sound-toggle.active {
-  color: #d4a843;
-  border-color: rgba(212,168,67,0.4);
-  background: rgba(212,168,67,0.05);
+  color: #ffab01;
+  border-color: rgba(255,171,1,0.4);
+  background: rgba(255,171,1,0.05);
 }
 .terminal-sound-toggle svg { flex-shrink: 0; }
 
 /* --- Terminal in hero (compact) --- */
 .terminal-hero { padding: 0 0 40px; }
+
+/* --- Sound beacon indicator --- */
+.terminal-sound-toggle {
+  position: relative;
+}
+.sound-beacon {
+  position: absolute;
+  inset: -4px;
+  border-radius: 6px;
+  border: 1.5px solid #ffab01;
+  animation: beacon-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  pointer-events: none;
+}
+@keyframes beacon-ring {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.6, 2); opacity: 0; }
+}
+.sound-tooltip {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  padding: 6px 10px;
+  background: #ffab01;
+  color: #000;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border-radius: 5px;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: tooltip-enter 0.4s ease-out;
+}
+.sound-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  right: 14px;
+  border: 5px solid transparent;
+  border-bottom-color: #ffab01;
+}
+@keyframes tooltip-enter {
+  0% { opacity: 0; transform: translateY(-4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.sound-beacon-wrap { display: contents; }
+.sound-beacon-wrap.dismissed .sound-beacon,
+.sound-beacon-wrap.dismissed .sound-tooltip { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .sound-beacon { animation: none; }
+}
 </style>
 </head>
 <body>
+
+<!-- Atmospheric glow orb -->
+<div class="atmosphere">
+  <div class="atmosphere-orb"></div>
+</div>
 
 <!-- ============ HERO ============ -->
 <section class="hero">
@@ -423,7 +528,7 @@ footer a:hover { color: #d4a843; }
         </radialGradient>
       </defs>
       <!-- Gold frame -->
-      <circle cx="60" cy="60" r="58" fill="none" stroke="#d4a843" stroke-width="2.5"/>
+      <circle cx="60" cy="60" r="58" fill="none" stroke="#ffab01" stroke-width="2.5"/>
       <circle cx="60" cy="60" r="56" fill="#080d1a"/>
       <!-- Portrait -->
       <g clip-path="url(#portrait-clip)">
@@ -496,6 +601,10 @@ footer a:hover { color: #d4a843; }
       <span class="terminal-dot green"></span>
       <span class="terminal-bar-title">peon-demo: ready</span>
       <button class="terminal-sound-toggle" id="termSoundToggle" title="Play sounds with animation">
+        <span class="sound-beacon-wrap" id="soundBeacon">
+          <span class="sound-beacon"></span>
+          <span class="sound-tooltip">Hear the Peon!</span>
+        </span>
         <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5L4 5H1v6h3l4 3.5V1.5z"/><path class="sound-wave" d="M11 4.5a6.5 6.5 0 010 7M11 7a3 3 0 010 2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
         <span>sound</span>
       </button>
@@ -527,7 +636,7 @@ footer a:hover { color: #d4a843; }
         <span class="term-dim">  Claude continues working...</span>
       </div>
       <div class="term-line" data-delay="7800" data-sound="PeonYes2">
-        <span class="term-sound">&#x1f50a; "Zug zug."</span>
+        <span class="term-sound">&#x1f50a; "Be happy to."</span>
         <span class="term-dim"> &mdash; done</span>
       </div>
       <div class="term-line" data-delay="8600">
@@ -582,7 +691,7 @@ footer a:hover { color: #d4a843; }
         <tr>
           <td>Task finishes</td>
           <td class="col-without">Silence</td>
-          <td class="col-with">"Zug zug."</td>
+          <td class="col-with">"Be happy to."</td>
         </tr>
         <tr>
           <td>Needs your permission</td>
@@ -629,7 +738,7 @@ footer a:hover { color: #d4a843; }
     </div>
     <div class="audio-card" data-sound="PeonYes2">
       <div class="audio-play-icon">&#9654;</div>
-      <div class="audio-quote">"Zug zug."</div>
+      <div class="audio-quote">"Be happy to."</div>
       <div class="audio-file">complete</div>
     </div>
     <div class="audio-card" data-sound="PeonYes4">
@@ -785,6 +894,9 @@ let termSoundEnabled = false;
 termSoundToggle.addEventListener('click', () => {
   termSoundEnabled = !termSoundEnabled;
   termSoundToggle.classList.toggle('active', termSoundEnabled);
+  // Dismiss beacon on first click
+  const beacon = document.getElementById('soundBeacon');
+  if (beacon) beacon.classList.add('dismissed');
   if (termSoundEnabled) animateTerminal();
 });
 
