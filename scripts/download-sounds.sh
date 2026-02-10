@@ -14,15 +14,15 @@ fi
 
 # Parse manifest for source URL and subfolder
 eval "$(/usr/bin/python3 -c "
-import json, sys
-m = json.load(open('$MANIFEST'))
-print('SOURCE_URL=' + repr(m['source_url']))
-print('SUBFOLDER=' + repr(m['source_subfolder']))
-")"
+import json, sys, shlex
+m = json.load(open(sys.argv[1]))
+print('SOURCE_URL=' + shlex.quote(m['source_url']))
+print('SUBFOLDER=' + shlex.quote(m['source_subfolder']))
+" "$MANIFEST")"
 
 SOUNDS_DIR="$INSTALL_DIR/packs/$PACK_NAME/sounds"
 TMPDIR=$(mktemp -d)
-trap "rm -rf $TMPDIR" EXIT
+trap 'rm -rf "$TMPDIR"' EXIT
 
 echo "Downloading $PACK_NAME sounds..."
 if ! curl -L -o "$TMPDIR/sounds.zip" "$SOURCE_URL" 2>/dev/null; then

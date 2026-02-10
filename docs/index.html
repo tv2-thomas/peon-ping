@@ -8,6 +8,12 @@
 <meta property="og:title" content="peon-ping — Stop babysitting your terminal">
 <meta property="og:description" content="Warcraft III Peon voice lines as Claude Code notifications. Never miss when Claude needs you.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://peon-ping.vercel.app/">
+<meta property="og:image" content="https://peon-ping.vercel.app/og-image.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://peon-ping.vercel.app/og-image.svg">
+<meta name="theme-color" content="#ffab01">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -261,7 +267,8 @@ a:hover { text-decoration: underline; }
   transition: filter 0.2s, box-shadow 0.2s;
   user-select: none;
 }
-.audio-card:hover { filter: brightness(1.25); }
+.audio-card:hover, .audio-card:focus-visible { filter: brightness(1.25); outline: 2px solid #ffab01; outline-offset: -2px; }
+.audio-card:focus:not(:focus-visible) { outline: none; }
 .audio-card.playing { filter: brightness(1.3); box-shadow: 0 0 20px rgba(255,171,1,0.35); }
 .audio-quote {
   font-size: 1rem;
@@ -582,9 +589,9 @@ footer a:hover { color: #ffab01; }
     Never lose flow to a silent terminal again &mdash;
     <strong>and your workspace sounds like Orgrimmar.</strong>
   </p>
-  <div class="install-block" onclick="copyInstall(this)" title="Click to copy">
+  <div class="install-block" onclick="copyInstall(this)" title="Click to copy" role="button" aria-label="Copy install command">
     <code>curl -fsSL https://raw.githubusercontent.com/tonyyont/peon-ping/main/install.sh | bash</code>
-    <button class="copy-btn" aria-label="Copy to clipboard">&#x2398;</button>
+    <button class="copy-btn" aria-label="Copy to clipboard"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="8" height="8" rx="1.5"/><path d="M3 11V2.5A1.5 1.5 0 014.5 1H10"/></svg></button>
   </div>
 </div>
 </section>
@@ -633,8 +640,8 @@ footer a:hover { color: #ffab01; }
       <div class="term-line" data-delay="6600">
         <span class="term-dim">  Claude continues working...</span>
       </div>
-      <div class="term-line" data-delay="7800" data-sound="PeonYes2">
-        <span class="term-sound">&#x1f50a; "Be happy to."</span>
+      <div class="term-line" data-delay="7800" data-sound="PeonYes1">
+        <span class="term-sound">&#x1f50a; "Work, work."</span>
         <span class="term-dim"> &mdash; done</span>
       </div>
       <div class="term-line" data-delay="8600">
@@ -677,45 +684,45 @@ footer a:hover { color: #ffab01; }
   <h2 class="section-title">Meet your new coworker</h2>
   <p class="section-desc">Click to play. These are the actual sounds you'll hear.</p>
   <div class="audio-grid">
-    <div class="audio-card" data-sound="PeonReady1">
+    <div class="audio-card" data-sound="PeonReady1" role="button" tabindex="0" aria-label="Play: Ready to work?">
       <div class="audio-play-icon">&#9654;</div>
       <div class="audio-quote">"Ready to work?"</div>
       <div class="audio-file">greeting</div>
     </div>
-    <div class="audio-card" data-sound="PeonYes3">
+    <div class="audio-card" data-sound="PeonYes1" role="button" tabindex="0" aria-label="Play: Work, work.">
       <div class="audio-play-icon">&#9654;</div>
       <div class="audio-quote">"Work, work."</div>
       <div class="audio-file">acknowledge</div>
     </div>
-    <div class="audio-card" data-sound="PeonYes2">
+    <div class="audio-card" data-sound="PeonYes2" role="button" tabindex="0" aria-label="Play: Zug zug.">
       <div class="audio-play-icon">&#9654;</div>
-      <div class="audio-quote">"Be happy to."</div>
-      <div class="audio-file">complete</div>
+      <div class="audio-quote">"Zug zug."</div>
+      <div class="audio-file">acknowledge</div>
     </div>
-    <div class="audio-card" data-sound="PeonYes4">
+    <div class="audio-card" data-sound="PeonYes4" role="button" tabindex="0" aria-label="Play: Okie dokie.">
       <div class="audio-play-icon">&#9654;</div>
       <div class="audio-quote">"Okie dokie."</div>
       <div class="audio-file">acknowledge</div>
     </div>
-    <div class="audio-card" data-sound="PeonWhat4">
+    <div class="audio-card" data-sound="PeonWhat1" role="button" tabindex="0" aria-label="Play: Something need doing?">
       <div class="audio-play-icon">&#9654;</div>
       <div class="audio-quote">"Something need doing?"</div>
       <div class="audio-file">permission</div>
     </div>
-    <div class="audio-card" data-sound="PeonAngry4">
+    <div class="audio-card" data-sound="PeonAngry1" role="button" tabindex="0" aria-label="Play: Me not that kind of orc!">
       <div class="audio-play-icon">&#9654;</div>
       <div class="audio-quote">"Me not that kind of orc!"</div>
       <div class="audio-file">annoyed</div>
     </div>
-    <div class="audio-card" data-sound="PeonAngry1">
+    <div class="audio-card" data-sound="PeonAngry4" role="button" tabindex="0" aria-label="Play: My tummy feels funny.">
       <div class="audio-play-icon">&#9654;</div>
-      <div class="audio-quote">"Whaaat?"</div>
+      <div class="audio-quote">"My tummy feels funny."</div>
       <div class="audio-file">error</div>
     </div>
-    <div class="audio-card" data-sound="PeonWhat3">
+    <div class="audio-card" data-sound="PeonWhat3" role="button" tabindex="0" aria-label="Play: What do you want?">
       <div class="audio-play-icon">&#9654;</div>
-      <div class="audio-quote">"What you want?"</div>
-      <div class="audio-file">selection</div>
+      <div class="audio-quote">"What do you want?"</div>
+      <div class="audio-file">permission</div>
     </div>
   </div>
 </div>
@@ -761,9 +768,9 @@ footer a:hover { color: #ffab01; }
 <div class="container" style="text-align: center;">
   <h2 class="section-title">Ready to work?</h2>
   <p class="section-desc" style="margin: 0 auto 32px;">One command. Takes 10 seconds. Works with any Claude Code setup on macOS.</p>
-  <div class="install-block" onclick="copyInstall(this)" title="Click to copy">
+  <div class="install-block" onclick="copyInstall(this)" title="Click to copy" role="button" aria-label="Copy install command">
     <code>curl -fsSL https://raw.githubusercontent.com/tonyyont/peon-ping/main/install.sh | bash</code>
-    <button class="copy-btn" aria-label="Copy to clipboard">&#x2398;</button>
+    <button class="copy-btn" aria-label="Copy to clipboard"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="8" height="8" rx="1.5"/><path d="M3 11V2.5A1.5 1.5 0 014.5 1H10"/></svg></button>
   </div>
 </div>
 </section>
@@ -773,21 +780,23 @@ footer a:hover { color: #ffab01; }
 <div class="container">
   <p>MIT License &middot; <a href="https://github.com/tonyyont/peon-ping">GitHub</a></p>
   <p>Sound files are property of Blizzard Entertainment. Downloaded separately at install time.</p>
-  <p>Friz Quadrata rendered by <a href="https://wc3ui.banteg.xyz/">wc3ui</a>.</p>
 </div>
 </footer>
 
 <script>
 // --- Copy install command ---
+const clipboardSVG = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="8" height="8" rx="1.5"/><path d="M3 11V2.5A1.5 1.5 0 014.5 1H10"/></svg>';
+const checkSVG = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5L6.5 12L13 4"/></svg>';
+
 function copyInstall(block) {
   const cmd = block.querySelector('code').textContent;
   navigator.clipboard.writeText(cmd).then(() => {
     const btn = block.querySelector('.copy-btn');
     btn.classList.add('copied');
-    btn.innerHTML = '&#x2713;';
+    btn.innerHTML = checkSVG;
     setTimeout(() => {
       btn.classList.remove('copied');
-      btn.innerHTML = '&#x2398;';
+      btn.innerHTML = clipboardSVG;
     }, 2000);
   });
 }
@@ -797,6 +806,9 @@ let currentAudio = null;
 let currentCard = null;
 
 document.querySelectorAll('.audio-card').forEach(card => {
+  card.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+  });
   card.addEventListener('click', () => {
     const soundName = card.dataset.sound;
 

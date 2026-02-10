@@ -1,8 +1,14 @@
 # peon-ping
 
+![macOS](https://img.shields.io/badge/macOS-only-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Claude Code](https://img.shields.io/badge/Claude_Code-hook-ffab01)
+
 **Your Peon pings you when Claude Code needs attention.**
 
 Claude Code doesn't notify you when it finishes or needs permission. You tab away, lose focus, and waste 15 minutes getting back into flow. peon-ping fixes this with Warcraft III Peon voice lines — so you never miss a beat, and your terminal sounds like Orgrimmar.
+
+**See it in action** &rarr; [peon-ping.vercel.app](https://peon-ping.vercel.app/)
 
 ## Install
 
@@ -14,12 +20,12 @@ One command. Takes 10 seconds. macOS only.
 
 ## What you'll hear
 
-| When | Peon says |
-|---|---|
-| Session starts | "Ready to work?", "Something need doing?" |
-| Task finishes | "Zug zug.", "Work, work.", "Okie dokie." |
-| Permission needed | "Hmm?", "What?", "Something need doing?" |
-| Rapid prompts (3+ in 10s) | "Me not that kind of orc!" |
+| Event | Sound | Examples |
+|---|---|---|
+| Session starts | Greeting | *"Ready to work?"*, *"Something need doing?"* |
+| Task finishes | Acknowledgment | *"Zug zug."*, *"Work, work."*, *"Okie dokie."* |
+| Permission needed | Alert | *"Hmm?"*, *"What?"*, *"Something need doing?"* |
+| Rapid prompts (3+ in 10s) | Easter egg | *"Me not that kind of orc!"* |
 
 Plus Terminal tab titles (`● project: done`) and macOS notifications when Terminal isn't focused.
 
@@ -73,6 +79,7 @@ bash ~/.claude/hooks/peon-ping/uninstall.sh
 
 Sound files are property of Blizzard Entertainment and are downloaded separately at install time from [The Sounds Resource](https://www.sounds-resource.com/).
 
-## License
+## Links
 
-MIT — see [LICENSE](LICENSE).
+- [Landing page](https://peon-ping.vercel.app/)
+- [License (MIT)](LICENSE)
