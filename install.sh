@@ -9,7 +9,7 @@ INSTALL_DIR="$HOME/.claude/hooks/peon-ping"
 SETTINGS="$HOME/.claude/settings.json"
 OPENCODE_INSTALL_DIR="$HOME/.config/opencode/plugins/peon-ping"
 OPENCODE_PLUGIN_FILE="$HOME/.config/opencode/plugins/peon-ping.js"
-REPO_BASE="https://raw.githubusercontent.com/tonyyont/peon-ping/main"
+REPO_BASE="https://raw.githubusercontent.com/tv2-thomas/peon-ping/main"
 
 # All available sound packs (add new packs here)
 PACKS="peon peon_fr peon_pl peasant peasant_fr ra2_soviet_engineer sc_battlecruiser sc_kerrigan"
